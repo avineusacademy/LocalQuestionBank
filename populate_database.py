@@ -5,12 +5,29 @@ from langchain.document_loaders.pdf import PyPDFDirectoryLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.schema.document import Document
 from langchain.vectorstores.chroma import Chroma
+from query_data import CHROMA_PATH
 
 from get_embedding_function import get_embedding_function
 
 CHROMA_PATH = "chroma"
 DATA_PATH = "data"
 
+def get_chroma():
+    return Chroma(
+        persist_directory=CHROMA_PATH,
+        embedding_function=get_embedding_function()
+    )
+
+def clear_chroma():
+    chroma = get_chroma()
+    ids = chroma._collection.get()['ids']
+    if ids:
+        chroma._collection.delete(ids=ids)
+
+
+def count_documents():
+    chroma = get_chroma()
+    return len(chroma.get()["ids"])
 
 def process_documents(reset: bool = False):
     if reset:

@@ -1,9 +1,26 @@
+# --- Core App ---
 streamlit
 langchain
 langchain-community
 chromadb
+
+# --- PDF and OCR ---
+ocrmypdf
 PyPDF2
-unstructured
 pypdf
-ollama
 fpdf
+pillow
+pdf2image
+unstructured
+pdfminer.six
+
+# --- Image & OCR ---
+pytesseract
+opencv-python
+
+# --- Optional LLMs ---
+ollama
+
+# --- Backend Utils ---
+tqdm
+
